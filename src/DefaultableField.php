@@ -137,7 +137,7 @@ class DefaultableField
 
             $last = Cache::get($cacheKey);
 
-            $field->default($last, $callback);
+            $field->defaultValue($last, $callback);
         }
 
         return $field->withMeta(['defaultLastValue' => 'true']);
