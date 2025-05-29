@@ -76,7 +76,7 @@ class DefaultableField
      *
      * @return \Laravel\Nova\Fields\Field
      */
-    public static function default(Field $field, $value, callable $callback = null)
+    public static function defaultValue(Field $field, $value, callable $callback = null)
     {
         foreach (static::$unsupported as $unsupported) {
             if ($field instanceof $unsupported) {
@@ -127,7 +127,7 @@ class DefaultableField
      *
      * @return \Laravel\Nova\Fields\Field
      */
-    public static function defaultLast(Field $field, callable $callback = null)
+    public static function defaultLastValue(Field $field, callable $callback = null)
     {
         $request = app(NovaRequest::class);
 
@@ -137,10 +137,10 @@ class DefaultableField
 
             $last = Cache::get($cacheKey);
 
-            $field->default($last, $callback);
+            $field->defaultValue($last, $callback);
         }
 
-        return $field->withMeta(['defaultLast' => 'true']);
+        return $field->withMeta(['defaultLastValue' => 'true']);
     }
 
     /**

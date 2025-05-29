@@ -15,10 +15,10 @@ trait HasDefaultableFields
      *
      * @return array
      */
-    protected static function fillFields(NovaRequest $request, $model, $fields)
+    protected static function fillFields(NovaRequest $request, $model, $fields): array
     {
         $fields->filter(function($field) {
-            return $field->meta['defaultLast'] ?? false;
+            return $field->meta['defaultLastValue'] ?? false;
         })->each(function($field) use ($request) {
             DefaultableField::cacheLastValue($request, $field);
         });
